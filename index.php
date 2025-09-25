@@ -1,20 +1,19 @@
 <?php
-    require 'php/listado.php';
-    require 'php/factura.php';
-    
-    if(isset($_POST)){
-        if(!empty($_POST['cantidad'])){
-            $factura = new Factura();
-            $cantidad = $_POST['cantidad'];       
-            $item = $_POST['item'];            
-            $factura->setCantidad($cantidad);            
-            $factura->setSubtotal($cantidad *  $listado[$item]->getPrecio());
-            $factura->setCerveza($listado[$item]);
-            var_dump($factura);
-        }        
-    }else{
+    session_start();
 
-    }
+    require 'php/listado.php';
+    require 'php/factura.php';    
+
+    if(isset($_SESSION['carrito'])){
+        //var_dump($_SESSION['carrito']);
+        $detalle = $_SESSION['carrito'];
+        echo count($detalle);
+        foreach($detalle as $fila){
+            var_dump($fila);
+        }
+    }    
+    
+    
 
 ?>
 <!DOCTYPE html>
@@ -26,7 +25,7 @@
 </head>
 <body>
     <h1>Caja Registradora:</h1>
-    <form method="post" action="index.php">
+    <form method="post" action="proceso.php">
         <label>Cantidad</label>
         <input type="text" name="cantidad">
         <label>Producto</label>
@@ -41,7 +40,7 @@
             ?> 
         </select>
         <button type="submit">Enviar</button>
-        <button type="submit">Terminar</button>
+        <a  type="button" href="vaciar.php">Terminar</button>
     </form>
 </body>
 </html>

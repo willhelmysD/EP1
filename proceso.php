@@ -5,7 +5,7 @@ session_start();
     
     if(isset($_POST) && !empty($_POST)){
         if(isset($_SESSION['carrito'])){
-            $detalle = $_SESSION['carrito'];
+            $detalle = unserialize($_SESSION['carrito']);
         }else{
             $detalle = [];
         }
@@ -18,7 +18,7 @@ session_start();
             $factura->setSubtotal($cantidad *  $listado[$item]->getPrecio());
             $factura->setCerveza($listado[$item]);
             $detalle[] = $factura;
-            $_SESSION['carrito'] = $detalle;
+            $_SESSION['carrito'] =  serialize($detalle);
             header('location: index.php');
         }        
     }else{

@@ -2,19 +2,27 @@
     session_start();
 
     require 'php/listado.php';
-    require 'php/factura.php';    
+    require 'php/factura.php';
+    $class = new Factura();    
 
     if(isset($_SESSION['carrito'])){
-        //var_dump($_SESSION['carrito']);
-        $detalle = $_SESSION['carrito'];
-        echo count($detalle);
+        //var_dump($_SESSION['carrito']);         
+        $detalle = unserialize($_SESSION['carrito']);
+        //echo count($detalle);
+        $total = 0;
         foreach($detalle as $fila){
-            var_dump($fila);
+            
+            $subtotal = $fila->getSubtotal();
+            $cant = $fila->getCantidad();
+            echo "Producto: ".$fila->getCerveza()->getNombre()."<br>";
+            echo "Precio unit: ".$fila->getCerveza()->getPrecio()."<br>";
+            
+            echo "Cantidad: $cant subtotal = $subtotal;<br>";
+            $total = $total + $subtotal;            
         }
+        echo "El total a pagar es: $total";
     }    
     
-    
-
 ?>
 <!DOCTYPE html>
 <html lang="en">

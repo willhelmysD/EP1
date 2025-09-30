@@ -21,4 +21,17 @@
         public function setCerveza($c){
             $this->cerveza = $c;
         }
+
+        public function getSubtotal(){
+            return $this->subtotal;
+        }
+
+        public function getCantidad(){
+            return $this->cantidad;
+        }
+
+        public function getCerveza(){
+            return $this->cerveza;
+        }
+
     }

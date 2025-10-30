@@ -1,11 +1,3 @@
-<?php 
-require_once "plantilla.html";
-startblock('article');
-require 'php/tarifas.php';
-var_dump($_SESSION['carrito']);
-?>
-
-    <h1>Calcular Ticket:</h1>
     <form method="post" action="php/proceso.php">
         <label>Horas:</label>
         <input type="number" name="hora" required>
@@ -30,4 +22,3 @@ var_dump($_SESSION['carrito']);
         </select>        
         <button type="submit" class="btn btn-info">Enviar</button>
     </form>
-<?php  endblock();?>

@@ -40,4 +40,23 @@ class UsuarioModel extends Conectar{
             throw new Exception("Error al consultar usuario: " . $e->getMessage());
         }
     }  
+    public function listarUsuario(){
+        try{
+            $sql = "select * from TUsuario";
+            $consulta =  $this->conexion->prepare($sql);
+            $consulta->execute();	
+            $resultados = $consulta->fetchAll(PDO::FETCH_ASSOC);                           
+            $usuararios = [];
+            foreach ($resultados as $fila) {
+                $usuario = new Usuario();
+                $usuario->setAll(
+                    $fila['nUsuarioID'],
+                    $fila['cNick']);
+                $usuarios[] = $usuario;
+            }
+            return $usuarios;
+        }catch(Exception $e){
+            die($e->getMessage());
+        }
+        }    
 }

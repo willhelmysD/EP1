@@ -1,0 +1,8 @@
+RewriteEngine On
+Options All -Indexes
+
+# Excluir archivos estáticos: imágenes, CSS, JS, fuentes, etc.
+RewriteCond %{REQUEST_URI} !\.(css|js|png|jpg|jpeg|gif|svg|woff|woff2|ttf|eot)$ [NC]
+
+# Redirigir todo lo demás a index.php
+RewriteRule ^([a-zA-Z0-9/ñÑ_-]+)(/?.*)$ index.php?url=$1&params=$2 [QSA,L]

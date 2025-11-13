@@ -1,3 +1,4 @@
+
 <?php 
 include_once 'plantilla.html';
 startblock('article') ?>
@@ -9,6 +10,26 @@ $user = $this->perfil->getNick();
 
 echo "Bienvenido usuario: $user <br>";
 echo "Total de usuarios: ".count($lista);
+
 ?>
-//var_dump($_SESSION);
+<form action="" method="">
+    <label>Nombre</label>
+    <input name="" id="name">
+
+    <label>Apellido</label>
+    <input name="" id="last">    
+    <button type="button" onclick="test()">Guardar</button>
+</form>
+
+
+<script>
+    function test(){
+        var name = $('#name').val();
+
+        if(name==""){
+            alert("se requiere el campo!"); 
+        }
+        
+    }
+</script>
 <?php endblock() ?>
